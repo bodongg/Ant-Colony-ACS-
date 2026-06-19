@@ -6,16 +6,6 @@ import java.awt.geom.*;
 import java.util.*;
 import java.util.List;
 
-/**
- * ============================================================
- *  IACO Simulator — Improved Ant Colony Optimization
- *  CS6L Algorithms and Complexity
- *  Based on: Yang & Zhuang, Applied Soft Computing 10 (2010)
- * ============================================================
- *  Compile:  javac IACO_Final_GUI.java
- *  Run:      java  IACO_Final_GUI
- * ============================================================
- */
 public class IACO_Final_GUI extends JFrame {
 
     // ── colour palette ────────────────────────────────────────
@@ -82,9 +72,7 @@ public class IACO_Final_GUI extends JFrame {
         setVisible(true);
     }
 
-    // ══════════════════════════════════════════════════════════
-    //  UI CONSTRUCTION
-    // ══════════════════════════════════════════════════════════
+
 
     private void buildUI() {
         setLayout(new BorderLayout(0, 0));
@@ -93,7 +81,7 @@ public class IACO_Final_GUI extends JFrame {
         add(buildStatusBar(), BorderLayout.SOUTH);
     }
 
-    // ── top bar ───────────────────────────────────────────────
+    // top bar 
     private JPanel buildTopBar() {
         JPanel bar = new JPanel(new FlowLayout(FlowLayout.LEFT, 14, 10));
         bar.setBackground(C_TOPBAR);
@@ -111,7 +99,7 @@ public class IACO_Final_GUI extends JFrame {
         return bar;
     }
 
-    // ── body ─────────────────────────────────────────────────
+    //  body
     private JPanel buildBody() {
         JPanel body = new JPanel(new BorderLayout(8, 0));
         body.setBackground(C_BG);
@@ -123,7 +111,7 @@ public class IACO_Final_GUI extends JFrame {
         return body;
     }
 
-    // ── parameter panel ───────────────────────────────────────
+    // parameter panel 
     private JPanel buildParamPanel() {
         JPanel card = card(240, 0);
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
@@ -167,7 +155,7 @@ public class IACO_Final_GUI extends JFrame {
         return card;
     }
 
-    // ── center notebook (tabs) ────────────────────────────────
+    // center notebook (tabs)
     private JPanel buildCenter() {
         JPanel wrap = new JPanel(new BorderLayout());
         wrap.setBackground(C_BG);
@@ -187,7 +175,7 @@ public class IACO_Final_GUI extends JFrame {
         return wrap;
     }
 
-    // ── metrics panel ─────────────────────────────────────────
+    //  metrics panel 
     private JPanel buildMetrics() {
         JPanel card = card(230, 0);
         card.setLayout(new BoxLayout(card, BoxLayout.Y_AXIS));
@@ -226,7 +214,7 @@ public class IACO_Final_GUI extends JFrame {
     }
     private JTextArea logArea;
 
-    // ── status bar ────────────────────────────────────────────
+    //  status bar 
     private JPanel buildStatusBar() {
         JPanel bar = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 8));
         bar.setBackground(new Color(0x2C2C2A));
@@ -261,10 +249,6 @@ public class IACO_Final_GUI extends JFrame {
         bar.add(statusLabel);
         return bar;
     }
-
-    // ══════════════════════════════════════════════════════════
-    //  ALGORITHM  (MARP / ACO / IACO)
-    // ══════════════════════════════════════════════════════════
 
     private void newProblem() {
         N  = (Integer) spnNodes.getValue();
@@ -457,7 +441,7 @@ public class IACO_Final_GUI extends JFrame {
         }).start();
     }
 
-    // ── tour construction (ACS pseudo-random-proportional rule) ──
+    //  tour construction (ACS pseudo-random-proportional rule) 
     private List<Integer> constructTour(double[][] ph, double alpha, double beta,
                                         double q0, boolean iaco, double tau0) {
         boolean[] visited = new boolean[N];
@@ -545,10 +529,6 @@ public class IACO_Final_GUI extends JFrame {
         return c;
     }
 
-    // ══════════════════════════════════════════════════════════
-    //  UI HELPERS
-    // ══════════════════════════════════════════════════════════
-
     private void resetAll() {
         iacoHistory.clear(); acoHistory.clear();
         iacoBestPath.clear(); acoBestPath.clear();
@@ -580,7 +560,7 @@ public class IACO_Final_GUI extends JFrame {
         logArea.setCaretPosition(logArea.getDocument().getLength());
     }
 
-    // ── widget factories ──────────────────────────────────────
+    // widget factories
 
     private JPanel card(int w, int h) {
         JPanel p = new JPanel();
@@ -638,7 +618,6 @@ public class IACO_Final_GUI extends JFrame {
         return sp;
     }
 
-    /** Returns [JSlider, JLabel] */
     private Object[] addSlider(JPanel p, String label, int lo, int hi, int init) {
         JPanel row = new JPanel(new BorderLayout(4, 0));
         row.setBackground(C_CARD);
@@ -667,8 +646,7 @@ public class IACO_Final_GUI extends JFrame {
         p.add(Box.createVerticalStrut(2));
         return new Object[]{sl, val};
     }
-
-    /** Metric value label inside a coloured card. */
+    
     private JLabel metCard(JPanel p, String label, Color bg, Color fg) {
         JPanel card = new JPanel(new BorderLayout());
         card.setBackground(bg);
@@ -714,11 +692,6 @@ public class IACO_Final_GUI extends JFrame {
         return b;
     }
 
-    // ══════════════════════════════════════════════════════════
-    //  INNER PANEL CLASSES
-    // ══════════════════════════════════════════════════════════
-
-    /** Draws the network graph with nodes, edges and best path. */
     class NetworkPanel extends JPanel {
         private List<Integer> path   = new ArrayList<>();
         private double[][]    pherom = null;
@@ -857,7 +830,7 @@ public class IACO_Final_GUI extends JFrame {
         }
     }
 
-    // ── convergence line chart ────────────────────────────────
+    // convergence line chart
     class ConvergPanel extends JPanel {
         private List<Double> iaco = new ArrayList<>();
         private List<Double> aco  = new ArrayList<>();
@@ -1063,11 +1036,7 @@ public class IACO_Final_GUI extends JFrame {
         private int clamp(int v) { return Math.max(0, Math.min(255, v)); }
     }
 
-    // ══════════════════════════════════════════════════════════
-    //  ENTRY POINT
-    // ══════════════════════════════════════════════════════════
     public static void main(String[] args) {
-        // Always create Swing components on the Event Dispatch Thread
         SwingUtilities.invokeLater(IACO_Final_GUI::new);
     }
 }
