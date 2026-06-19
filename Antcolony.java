@@ -8,7 +8,6 @@ import java.util.List;
 
 public class IACO_Final_GUI extends JFrame {
 
-    // ── colour palette ────────────────────────────────────────
     static final Color C_BG       = new Color(0xF4F4F2);
     static final Color C_CARD     = Color.WHITE;
     static final Color C_TOPBAR   = new Color(0x185FA5);
@@ -27,7 +26,6 @@ public class IACO_Final_GUI extends JFrame {
     static final Color C_MET_TXT_I= new Color(0x3B6D11);
     static final Color C_MET_TXT_A= new Color(0x712B13);
 
-    // ── state ─────────────────────────────────────────────────
     private NetworkPanel   networkPanel;
     private ConvergPanel   convPanel;
     private PheromonePanel pheroPanel;
@@ -59,7 +57,6 @@ public class IACO_Final_GUI extends JFrame {
     private List<Integer> acoBestPath  = new ArrayList<>();
     private double[][] iaco_pheromone;
 
-    // ─────────────────────────────────────────────────────────
     public IACO_Final_GUI() {
         super("IACO Simulator  —  CS6L Algorithms & Complexity");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -71,7 +68,6 @@ public class IACO_Final_GUI extends JFrame {
         newProblem();
         setVisible(true);
     }
-
 
 
     private void buildUI() {
